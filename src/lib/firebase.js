@@ -1,15 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
 
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut, 
-  GoogleAuthProvider
-} from "firebase/auth"
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBRofRUtMyYyszxyUKit8su7eCbTCJjXyo",
@@ -21,8 +14,8 @@ const firebaseConfig = {
   measurementId: "G-6JRFQ57ZNV"
 };
 
-// Inicializar Firebase
-const appFirebase = initializeApp(firebaseConfig);
+// Inicializar Firebase 
+export const appFirebase = initializeApp(firebaseConfig);
 
 // Obtener la instancia de autenticación
 const auth = getAuth(appFirebase);
@@ -38,12 +31,12 @@ export const iniciaSesionUsuario = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password);
 };
 
-//Usuario con inicio de sesion 
+// Usuario con inicio de sesión
 export const verifyUser = (knowUser) => {
   return onAuthStateChanged(auth, knowUser);
 };
 
-// Inicio de sesion con google
+// Inicio de sesión con Google
 export const inicioGoogle = () => {
   return signInWithPopup(auth, provider);
 };
@@ -52,6 +45,3 @@ export const inicioGoogle = () => {
 export const salirSesion = () => {
   return signOut(auth);
 };
-
-
-export default appFirebase;

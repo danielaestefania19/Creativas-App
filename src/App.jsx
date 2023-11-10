@@ -1,21 +1,22 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+//import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from './components/Home';
+//import { verifyUser } from './lib/firebase.js';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/inicio" component={Home} />
-        <Route path="/registro" component={Register} />
-        <Route path="/" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/home" component={Home} />
       </Switch>
     </Router>
   );
 }
 
 export default App;
+
 

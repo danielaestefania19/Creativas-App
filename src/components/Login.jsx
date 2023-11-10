@@ -1,27 +1,47 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useHistory } from 'react-router-dom';
-import { signInWithEmailAndPassword } from '../lib/firebase';
+import { iniciaSesionUsuario } from "../lib/firebase";
 
-function Login() {
+const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(email, password);
-      history.push('/inicio'); // Redirige a la página de inicio después del inicio de sesión
+      await iniciaSesionUsuario(email, password);
+      history.push("/inicio"); // Redirigir a la página de inicio después del inicio de sesión
     } catch (error) {
-      console.error('Error al iniciar sesión: ', error);
+      console.error("Error al iniciar sesión:", error);
     }
   }
 
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     await inicioGoogle();
+  //     history.push("/inicio"); // Redirigir a la página de inicio después del inicio de sesión
+  //   } catch (error) {
+  //     console.error("Error al iniciar sesión con Google:", error);
+  //   }
+  // }
+
   return (
     <div>
-      <h1>Iniciar Sesión</h1>
-      <input type="email" placeholder="Correo Electrónico" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Contraseña" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Iniciar Sesión</button>
+      <h2>Login</h2>
+      <input 
+      type="email" 
+      placeholder="Correo electrónico" 
+      value={email}
+      onChange={(e) => setEmail(e.target.value)} 
+      />
+      <input 
+      type="password" 
+      placeholder="Contraseña" 
+      value={password}
+      onChange={(e) => setPassword(e.target.value)} 
+      />
+      <button onClick={handleLogin}>Iniciar sesión</button>
+      {/* <button onClick={handleGoogleLogin}>Iniciar sesión con Google</button> */}
     </div>
   );
 }
